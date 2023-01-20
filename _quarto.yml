@@ -1,0 +1,19 @@
+project:
+  type: website
+  output-dir: docs
+
+website:
+  title: "MDE 2023"
+  navbar:
+    left:
+      - href: index.qmd
+        text: Home
+      # - href: https://observablehq.com/d/4269c5b7539c52eb
+      #   text: TP4
+      # - about.qmd
+
+format:
+  html:
+    theme: flatly
+    css: styles.css
+    toc: true

@@ -1,0 +1,24 @@
+
+---
+title: "Interactive Data Visualization"
+---
+
+### TP3: Geographical Visualizations
+[Subject](https://observablehq.com/d/4269c5b7539c52eb) [Base Code](files/tp3_subject.zip)
+
+[Answers]
+
+### TP4: Interactive Visualizations
+[Subject](https://observablehq.com/d/2ebdc9dfb20df8c7)
+[Base Code](files/tp4_subject.zip)
+
+[Answers]
+
+### TP5: Spatial data visualization with Kepler gl
+[Subject](https://observablehq.com/d/dc44334f266de58a)
+[Answers]
+
+### TP6: Spatio-temporal Visualizations
+[Subject](https://observablehq.com/d/3af7de4555b5cf3b)
+[Answers]
+
