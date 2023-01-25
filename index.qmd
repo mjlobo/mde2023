@@ -17,12 +17,12 @@ title: "Interactive Data Visualization"
 ### TP5: Spatial data visualization with Kepler gl
 [Subject](https://observablehq.com/d/dc44334f266de58a)
 
-[Answers](files/tp5_answers.zip)
+[Answers](tp5_answers.html)
 
 ### TP6: Spatio-temporal Visualizations
 [Subject](https://observablehq.com/d/3af7de4555b5cf3b)
 
-[Answers](files/tp6_answers.zip)
+[Answers](tp6_answers.html)
 
 ### Evaluation
 [Subject 1](https://observablehq.com/d/0d7791d435f5e55d)
