@@ -4,7 +4,7 @@
     "href": "index.html",
     "title": "Interactive Data Visualization",
     "section": "",
-    "text": "TP4: Interactive Visualizations\nSubject Base Code\nAnswers\n\n\nTP5: Spatial data visualization with Kepler gl\nSubject\n[Answers]\n\n\nTP6: Spatio-temporal Visualizations\nSubject\n[Answers]"
+    "text": "TP4: Interactive Visualizations\nSubject Base Code\nAnswers\n\n\nTP5: Spatial data visualization with Kepler gl\nSubject\nAnswers\n\n\nTP6: Spatio-temporal Visualizations\nSubject\nAnswers\n\n\nEvaluation\nSubject 1\nSubject 2\nSubject 3\nSubject 4\nSubject 5\nSubject 6\nSubject 7\nSubject 8\nSubject 9"
   },
   {
     "objectID": "about.html",
@@ -12,5 +12,61 @@
     "title": "About",
     "section": "",
     "text": "About this site"
+  },
+  {
+    "objectID": "tp6_answers.html",
+    "href": "tp6_answers.html",
+    "title": "IDV TP6: Spatio-temporal visualizations: answers",
+    "section": "",
+    "text": "From the data, co-visualize on two maps the places of arrival and departure of taxi journeys using the color to represent trip distance, with an aggregation by cluster, then through a hexagonal grid in 2D+1. What do you observe?\nWith the color (color value), what other attributes can you visualize, giving you an additional information about the taxi trips distribution?\n\n\nWe see that most pickups and dropoffs are located in the center of New York. Zooming out, we can see that there are also clusters around the airports. These trips seem also to be the longest ones.\n \n \nWe could also visualize the passenger count using color."
+  },
+  {
+    "objectID": "tp6_answers.html#exercise-2",
+    "href": "tp6_answers.html#exercise-2",
+    "title": "IDV TP6: Spatio-temporal visualizations: answers",
+    "section": "Exercise 2",
+    "text": "Exercise 2\nUsing a filter and an animation, represent the evolution of the distribution of departure and arrival locations during the day What do you observe?\n\nAnswer\nWe see for example that early in the morning there are many pickups in the east of the city and then mostly in the city center and the airports. In the morning there also more pickups in the suburbs than in the rest of the day. Drops offs are similar, most in downtown and the airports. However, drop offs in the suburbs happen more at the evenning and night."
+  },
+  {
+    "objectID": "tp6_answers.html#exercise-3",
+    "href": "tp6_answers.html#exercise-3",
+    "title": "IDV TP6: Spatio-temporal visualizations: answers",
+    "section": "Exercise 3",
+    "text": "Exercise 3\nIn this second part, we will directly visualize the flows corresponding to taxi trips, with their departure and arrival points. Look in the options for a way to visualize flows using lines or arcs. Explore color options to represent flows based on where they start and end. Using a filter and an animation, observe the evolution of the distribution and direction of the flows during the day. What do you observe?\nUse the brushing tools to observe the evolution of journeys made to and from JFK airport, and the neighborhoods of midtown and downtown Manhattan.\n\nAnswer\nWe see more origins and destinations with the flow visualization that does not aggregate the points. We see similar patterns than before: most trips happen in the city center and from/to the airports, in the morning the trips go from the suburbs to the center and the other way in the afternoon.\nFrom downtown most trips go the airports. We see the pattenrs that we saw before, the brushing tool enables us to reduce clutter."
+  },
+  {
+    "objectID": "tp6_answers.html#exercise-4",
+    "href": "tp6_answers.html#exercise-4",
+    "title": "IDV TP6: Spatio-temporal visualizations: answers",
+    "section": "Exercise 4",
+    "text": "Exercise 4\n\nCreate a new table that contains the stations, the dates and the coords. You can use the table trainsByStationCoords of the previous TP as an example.\nLoad the table into Kepler, how is this dataset different to the NY one?\nExplore the flow spatio-temporal distribution, what do you see ?\nUsing Vega, propose two complementary visualizations to depict the flow spatio-temporal distribution.\n\n\nAnswer\n\n\n\n{\n  trainsByStationsAndDate = trainswithdate\n  .groupby('date', 'departure_station', 'arrival_station',)\n  .rollup({\n    total_num_trips: d => op.mean(d.total_num_trips),\n    num_late_at_departure: d=>op.mean(d.num_late_at_departure),\n    num_arriving_late: d=>op.mean(d.num_arriving_late)})\n\n  trainsByStationsAndDateCoords = trainsByStationsAndDate.\n  join_left(gares, ['departure_station', 'LIBELLE'])\n  .rename({ X_WGS84: 'X_WGS84_DEP', Y_WGS84: 'Y_WGS84_DEP'})\n  .select(aq.not('LIBELLE', 'DEPARTEMENT', 'CODE_DEP'))\n  .join_left(gares,['arrival_station', 'LIBELLE'])\n  .rename({ X_WGS84: 'X_WGS84_ARR', Y_WGS84: 'Y_WGS84_ARR'})\n\n  trainsByStationsAndDateCoords.objects()\n\n}\n\nThis dataset is different because we have less departure and arrival points as all of them correspond to train stations. The result is less cluttered.\nWe can see that the number of trips across times varies for multiple trips. There are also some routes that have appeared across time (or we do not have the data for before) such as the ones going and coming from Belgique.\nThe limitations of using such visualization for spatio-temporal analysis is that is difficult to compare values through color. A linear graph might be more useful to study the evolution of number of trips, for example.\nUsing Vega we could create the linear graphs mentioned above, and also use small multiples to depict the flow evolution across time (using an od matrix or a flow map), or the difference between some years. For now, Vega Lite does not support animation but a recent research paper proposed an extension that could resolve the problem Animated Vega Lite"
+  },
+  {
+    "objectID": "tp5_answers.html",
+    "href": "tp5_answers.html",
+    "title": "IDV TP5: Spatial data visualization with Kepler gl: answers",
+    "section": "",
+    "text": "Choose the right table to represent the number of trains departing at a station, dowload it as a csv and import it to kepler.\nUse the color intensity and their size to represent the number of departing trains at each station. Why is using the color interesting? What problem this might cause?\n\n\n\n\nThe table we need is trainsByDepartureWithCoords\nUsing color enables to make the difference between the values clearer. However, there might be an interference when using color and size at the same time.\n\n\n\n\nDeparting trains"
+  },
+  {
+    "objectID": "tp5_answers.html#exercise-2",
+    "href": "tp5_answers.html#exercise-2",
+    "title": "IDV TP5: Spatial data visualization with Kepler gl: answers",
+    "section": "Exercise 2",
+    "text": "Exercise 2\n\nCreate a second layer to display the number of delayed trains at arrival instead (you will need to create a new table) of the number of trips.\nFirst, display the number of delayed trains at arrival and departure in the same map view.\nThen, display each field in one view of the double view.\nDiscuss the advantages and inconveniences of both representations.`\n\n\nAnswers\n\n\n\n\nTwo variables in one map\n\n\n\n\n\nDouble view\n\n\nThe comparison is easier with the superposed circles because they are in the same place but there is an oclussion problem so estimating the values might be more difficult."
+  },
+  {
+    "objectID": "tp5_answers.html#exercise-3",
+    "href": "tp5_answers.html#exercise-3",
+    "title": "IDV TP5: Spatial data visualization with Kepler gl: answers",
+    "section": "Exercise 3",
+    "text": "Exercise 3\n\nChange the polygons color to represent the ratio. Verify that you are using the right color scale and mode. Quantile mode separates the data into intervals with the same quantity of items, quantize mode separates the data into equal intervals. You can use the third button to the rigth to activate the legend.\nUse at the same time circles to represent the number of delayed trains at departure through the circle size. What problems appear when using these representations at the same time?\nKeeping only the areas, use the polygon height to represent the number of delayed trains at departure. You can swith to a 3D view using ht second button in the right panel. To achieve this you have to add the number of delayed trains to the final JSON and download it and import it again. What pros and cons do you think this visualization has?\nUse the filter tool (second icon in the left menu) to visualize only the departments that have a ratio bigger than 10%. To achieve this, add a filter to the ratio field and adjust the slider.\n\n\nAnswers\n\n\n\n\nRatio in the areas\n\n\n The problem of using the circles and regions at the same time is oclussion.\n This representation has the advantage of displaying two variables at the same time. However, it might be difficult to compare the heights because the areas are not the same, and the color might cause visual interferance with the other visual variables.\n\n\n\nFilter"
+  },
+  {
+    "objectID": "tp5_answers.html#exercise-6",
+    "href": "tp5_answers.html#exercise-6",
+    "title": "IDV TP5: Spatial data visualization with Kepler gl: answers",
+    "section": "Exercise 6",
+    "text": "Exercise 6\n\nDownload the corresponding table and import it into Kepler.\nUse arcs to represent trips. You have to select the origin and destination coordinates.\nUse the color of the arcs to represent the total number of trips.\nUse the size of the arcs to represent the total number of trips. Which one of these two representations seems more appropriate ?\nUse lines instead of arcs. What pros and cons do you see in this representations compared to the 3D representation ?\nFind the option to adjust the tooltips that are displayed when the user interacts with the flows and display only the information that interests us.\n\n\nAnswers\n\n\n\n\nArcs’ color\n\n\n It looks like distinguishing colors is easier than distinguishing lines width, and color is more efficient as a visuable variable than 3D volumes because of perspective.\n A 2D representation does not have perspective issues but there is more occlusion between lines.\n\n\n\nTooltips"
   }
 ]
